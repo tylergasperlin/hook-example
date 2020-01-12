@@ -6,17 +6,30 @@ const UseEffectExample = () => {
   const [user, setUser] = useState(null);
   const [searchQuery, setSearchQuery] = useState('Bret');
 
+  //USE EFFECT
+  //does not get back value
+  //gets function whenever updates/rerenders
+  //used instead of mount or didupdate
   useEffect(() => {
-    const fetchFunc = async () => {
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/users?username=${searchQuery}`
-      );
-      const resJson = await response.json();
-      setUser(resJson[0]);
-    };
+    //conditionals must be used within the hook rather than a hook being wrapped by the conditional
+    
+    if(searchQuery.length>0){
+      console.log('render')
+      //this is in place of component did mount = getting data on render
+      const fetchFunc = async () => {
+        const response = await fetch(
+          `https://jsonplaceholder.typicode.com/users?username=${searchQuery}`
+        );
+        const resJson = await response.json();
+        setUser(resJson[0]);
+      };
+  
+      fetchFunc();
+    }
 
-    fetchFunc();
-  }, [searchQuery]);
+    //will not trigger rerender - only want to trigger when search query changes
+    //empty array means we only want this to fire when we first mount the component
+  }, [searchQuery]); //this param = searchquery makes it so that we only rerender when search query rerenders
 
   return (
     <Card>

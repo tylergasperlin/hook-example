@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import Card from '../card/card.component';
 
 const UseStateExample = () => {
-  const [name, setName] = useState('Yihua');
-  const [address, setAddress] = useState('Amsterdam');
+  const [name, setName] = useState('Tyler');
+  const [address, setAddress] = useState('Orange County ');
 
   return (
     <Card>
       <h1> {name} </h1>
       <h1> {address} </h1>
-      <button onClick={() => setName('Andrei')}>Set Name to Andrei</button>
+      <button onClick={() => setName('Brody')}>Set Name to Brody</button>
       <button onClick={() => setAddress('Canada')}>Set Address</button>
     </Card>
   );
